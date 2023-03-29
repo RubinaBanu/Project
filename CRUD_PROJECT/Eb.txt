@@ -1,0 +1,44 @@
+import java.util.Scanner;
+class Eb
+{
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter the units consumed(in kWh) : ");
+double units=sc.nextFloat();
+double billtoPay=0;
+if(units<100)
+{
+billtoPay=units*0;
+}
+else if(units>=100 && units<200)
+{//for first 100 units=Rs.0(free of cost)
+billtoPay=(units-100)*2.25;
+}
+else if(units>=200 && units<400)
+{
+billtoPay=(100*2.25)+(units-200)*4.50;
+}
+else if(units>=400 && units<500)
+{
+billtoPay=(100*2.25)+(200*4.50)+(units-400)*6.00;
+}
+else if(units>=500 && units<600)
+{
+billtoPay=(100*2.25)+(200*4.50)+(400*6.00)+(units-500)*8.00;
+}
+else if(units>=600 && units<800)
+{
+billtoPay=(100*2.25)+(200*4.50)+(400*6.00)+(500*8.00)+(units-600)*9.00;
+}
+else if(units>=800 && units<1000)
+{
+billtoPay5=(100*2.25)+(200*4.50)+(400*6.00)+(500*8.00)+(600*9.00)+(units-800)*10.00;
+}
+else if(units>=1000)
+{
+billtoPay=(100*2.25)+(200*4.50)+(400*6.00)+(500*8.00)+(600*9.00)+(800*10.00)+(units-1000)*11.00;
+}
+System.out.println("The electricity bill to be paid is Rs."+billtoPay);
+}
+}

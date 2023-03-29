@@ -1,0 +1,98 @@
+SPRING BOOT CRUD APPLICATION USING THYMELEAF
+--------------------------------------------------
+
+Project Flow
+-------------------------
+steps:
+
+browser----->employee controller--->employee service--->employee repository--->Mysql
+                      |
+                      |
+                      
+                    webpage
+
+
+1) My project consist of browser,employee controller,employer service,employee repository,mysql db.
+2)starting from web browser will request to my emp controller 
+3)employee controller sends a request to employee service
+4)it agains pass to emp repository
+5)emp.repository sends it to mysql db.
+6)from mysql db,emp repository(DAO) retrives the data from mysql db and pass it to emp.service
+7)the inversion of process takes place.emp service sends the required data to emp controller
+8)emp controller basically return a view that is the thymeleaf template and it will render on web browser.
+
+This is my project flow of my spring web application.
+
+Web Application Architecture
+---------------------------
+1)thymeleaf template engine to develop a view layer 
+2)i created three layer architecture.employee controller,emp service,emp repository layer or dao layer as backend.
+At EMPLOYEE controller layer i used spring mvc to develop spring mvc controller and which it will handle all the http request.
+At employee service layer,basically used to keep all business logics and any transaction related stuff are there we can create it here.
+And third layer of employee repository is responsible to establish a connection with mysql db and it exposes crud db operations for emp entity
+3)mysql as database-there are many db available.in my project i used mysql db.
+
+so this is my web application architecture.
+
+Coming up of tools and technologies used
+---------------------------------------------
+1)spring boot application version 3.0.5--to develop my web application..spring boot internally uses spring framework
+2)spring framework ---
+3)maven--used for dependency management and project build tool
+4)java 8
+5)spring data jpa(hibernate)--it is used to develop our repository or dao.it internally uses hibernate as default jpa provider.
+normally we use spring data jpa to reduce a boilerplate code that is required to develop a dao layer
+6)thymeleaf is used to develop my project view.
+
+Dependencies i added while creating a project
+------------------------------------------------
+1)while creating a project i added dependiencies of spring web which is used to Build web, including RESTful, applications using Spring MVC. It Uses Apache Tomcat as the default embedded servelet container.
+
+2)then second dependencies i have added is spring data jpa ,it is an interface which Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+
+3)next one is thymleaf template engine-It is a modern server-side Java template engine for both web and standalone environments. It allows my HTML to be correctly displayed in browsers and as static prototypes.
+
+4)then is mysql driver.
+
+5)last is spring boot dev tools -whenever we make changes,it provides fast application restarts, LiveReload, and configurations for enhanced development experience.
+
+
+so these are the dependencies i used to develop my real time projects.
+
+Project code explanation
+------------------------
+1)As we all know that spring application starts from the main class of @springbootapplication. It is a combination of @Configuration, @ComponentScan and @EnableAutoConfiguration annotations. 
+2)In Spring Boot, whenever a new Spring Boot Application in spring starter is created,a file is located inside the src/main/resources folder named as application.properties file.
+application.properties file is used to write the application-related property into that file. 
+This file contains the different configuration which is required to run the application in a different environment, and each environment will have a different property defined by it. 
+Inside the application properties file, we define every type of property like changing the port, database connectivity, connection to the eureka server, and many more.
+3)POM is an acronym for Project Object Model. 
+The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc.
+Maven reads the pom.xml file, then executes the goal.
+3)i created demo database in mysql workbench and add the application details in application.properties.
+4)then i created pojo class or java bean in the name of model under src.main.java in separate package by using 
+@entity,@id,@table and @column annotation.
+@Entity is used to mark a Java class as an entity, which means that it represents a table in a database. Each entity class must have a primary key, which is defined using the @Id annotation. 
+The @Table annotation is used to specify the name of the table that the entity represents.
+@Column is an annotation used to specify the mapping of a class field to a database column.
+5)I have created employee controller page by using annotation @controller.
+The @Controller annotation indicates that a particular class serves the role of a controller. 
+Spring Controller annotation is typically used in combination with annotated handler methods based on the @RequestMapping annotation. 
+It can be applied to classes only. It’s used to mark a class as a web request handler. It’s mostly used with Spring MVC applications. 
+In employee controller page,i have created a method handler for homepage(index.html) to display a list of employees using @getmapping OR WE CAN USE @REQUEST MAPPING annotation too.
+These annotations are used to map HTTP requests to specific methods in a controller. They simplify the process of handling different types of HTTP requests.
+The @RequestParam annotation is a Spring annotation that is used to map HTTP request parameters to method parameters in Spring MVC controllers.
+i also used @path variable annotation. It is used to extract a variable from the URL path and map it to a method parameter.
+6)then i created employee repository interface which extends jpa repository using annotation @repository under same src.main.java.
+@Repository Annotation is a specialization of @Component annotation which is used to indicate that the class provides the mechanism for storage, retrieval, update, delete and search operation on objects. 
+Though it is a specialization of @Component annotation, so Spring Repository classes are autodetected by spring framework through classpath scanning. 
+This annotation is a general-purpose stereotype annotation which very close to the DAO pattern where DAO classes are responsible for providing CRUD operations on database tables. 
+7)And at service folder,i created service interface which needs to be implemented by serviceimplementation class file with the annotation of @service.
+This annotation is used to mark a class as a service. It is typically used to encapsulate business logic and is often used in conjunction with @Autowired. i injected employee repository interface using @autowired annotation in empserviceimple file.
+This annotation is used to inject dependencies into a Spring bean. It automatically wires the dependencies and eliminates the need for manual configuration.
+8)on default,springboot uses templates folder for thymeleaf template .so i created a html file for indexing which is used to display the list of employees,adding,updating,deleting the employee details under templates folder
+
+
+
+
+
